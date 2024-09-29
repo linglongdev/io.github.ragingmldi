@@ -1,0 +1,30 @@
+version: "1"
+
+package:
+  id: io.github.ragingmldi
+  name: ragingmldi
+  version: 1.3.2.1
+  kind: app
+  description: |
+    Qt-based cross-platform MIDI editor.
+
+command:
+  - /opt/apps/io.github.ragingmldi/files/bin/ragingmidi
+
+base: org.deepin.foundation/23.0.0
+runtime: org.deepin.Runtime/23.0.1
+
+sources:
+  - kind: git
+    url: https://github.com/waddlesplash/ragingmidi.git
+    version: master
+    commit: 7153bf68667fba7540541dddcd3ae5e5a02572f9
+
+build: |
+  cd /project/linglong/sources/ragingmidi.git
+  git apply ../../../0001-install.patch
+  cp src/Resources/Logo.png src/Resources/ragingmidi.png
+  cd src
+  qmake -makefile PREFIX=${PREFIX} LIB_INSTALL_DIR=${PREFIX}/lib/${TRIPLET}
+  make -j$(nproc)
+  make install

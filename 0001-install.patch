@@ -1,0 +1,48 @@
+From fe62bf58d84ba3e773b51ceee2a01f6f7accb83f Mon Sep 17 00:00:00 2001
+From: wjyrich <1071633242@qq.com>
+Date: Thu, 12 Sep 2024 14:05:27 +0800
+Subject: [PATCH] install
+
+---
+ src/RagingMidi.pro               |  8 ++++++++
+ src/Resources/ragingmidi.desktop | 11 +++++++++++
+ 2 files changed, 19 insertions(+)
+ create mode 100644 src/Resources/ragingmidi.desktop
+
+diff --git a/src/RagingMidi.pro b/src/RagingMidi.pro
+index 7d12e30..dc9e0ac 100644
+--- a/src/RagingMidi.pro
++++ b/src/RagingMidi.pro
+@@ -79,3 +79,11 @@ exists(../.git/HEAD) {
+ } !exists(Resources/REVISION.txt) {
+     system(echo ???????????????????????????????????????? >Resources/REVISION.txt)
+ }
++
++target.path = $$PREFIX/bin
++desktop.files = Resources/ragingmidi.desktop
++desktop.path = $$PREFIX/share/applications/
++icons.path = $$PREFIX/share/icons/hicolor/apps/
++icons.files = Resources/ragingmidi.png
++
++INSTALLS += target desktop icons
+diff --git a/src/Resources/ragingmidi.desktop b/src/Resources/ragingmidi.desktop
+new file mode 100644
+index 0000000..a715a52
+--- /dev/null
++++ b/src/Resources/ragingmidi.desktop
+@@ -0,0 +1,11 @@
++[Desktop Entry]
++Categories=Accessibility;Qt;Utility;
++Exec=ragingmidi
++Name=ragingmidi
++Name[zh_CN]=ragingmidi
++Icon=ragingmidi
++StartupNotify=false
++Terminal=false
++Type=Application
++GenericName=ragingmidi
++Version=1.0
+\ No newline at end of file
+-- 
+2.43.4
+
